@@ -46,10 +46,13 @@ namespace DddStore.Catalogo.Domain
         {
             QuantidadeEstoque += quantidade;
         }
-
         public bool PossuiEstoque(int quantidade)
         {
             return QuantidadeEstoque >= quantidade;
+        }
+        public void Validar()
+        {
+
         }
     }
 }
