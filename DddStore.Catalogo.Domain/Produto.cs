@@ -3,7 +3,7 @@
 
 namespace DddStore.Catalogo.Domain
 {
-    public class Produto : Entity
+    public class Produto : Entity, IAggregateRoot
     {
         public string Nome { get; private set; }
         public string Descricao { get; private set; }
@@ -14,7 +14,7 @@ namespace DddStore.Catalogo.Domain
         public int QuantidadeEstoque { get; private set; }
         public Dimensoes Dimensoes { get; private set; }
         public Guid CategoriaId { get; set; }
-        public Categoria? Categoria { get; private set; }
+        public Categoria Categoria { get; private set; }
 
         public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime dataCadastro, string imagem, Dimensoes dimensoes)
         {
