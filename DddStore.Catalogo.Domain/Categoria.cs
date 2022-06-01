@@ -5,8 +5,8 @@ namespace DddStore.Catalogo.Domain
 {
     public class Categoria : Entity
     {
-        public string? Nome { get; private set; }
-        public string? Codigo { get; private set; }
+        public string Nome { get; private set; }
+        public string Codigo { get; private set; }
 
         public Categoria(string nome, string codigo)
         {

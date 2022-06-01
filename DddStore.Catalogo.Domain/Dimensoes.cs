@@ -15,9 +15,9 @@ namespace DddStore.Catalogo.Domain
 
         public Dimensoes(decimal altura, decimal largura, decimal profundidade)
         {
-            Validacoes.ValidarSeMenorIgualMinimo(altura, 1, "O campo altura precisa ser maior que 1");
-            Validacoes.ValidarSeMenorIgualMinimo(largura, 1, "O campo largura precisa ser maior que 1");
-            Validacoes.ValidarSeMenorIgualMinimo(profundidade, 1, "O campo profundidade precisa ser maior que 1");
+            Validacoes.ValidarSeMenorQue(altura, 1, "O campo altura precisa ser maior que 1");
+            Validacoes.ValidarSeMenorQue(largura, 1, "O campo largura precisa ser maior que 1");
+            Validacoes.ValidarSeMenorQue(profundidade, 1, "O campo profundidade precisa ser maior que 1");
 
             Altura = altura;
             Largura = largura;

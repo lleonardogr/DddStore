@@ -5,12 +5,12 @@ namespace DddStore.Catalogo.Domain
 {
     public class Produto : Entity
     {
-        public string? Nome { get; private set; }
-        public string? Descricao { get; private set; }
+        public string Nome { get; private set; }
+        public string Descricao { get; private set; }
         public bool Ativo { get; private set; }
         public decimal Valor { get; private set; }
         public DateTime DataCadastro { get; private set; }
-        public string? Imagem { get; private set; }
+        public string Imagem { get; private set; }
         public int QuantidadeEstoque { get; private set; }
         public Dimensoes Dimensoes { get; private set; }
         public Guid CategoriaId { get; set; }
@@ -59,11 +59,11 @@ namespace DddStore.Catalogo.Domain
         }
         public void Validar()
         {
-            Validacoes.ValidarSeVazio(Nome, "O Campo Nome não pode estar vazio");
-            Validacoes.ValidarSeVazio(Descricao, "O Campo Descricao não pode estar vazio");
-            Validacoes.ValidarSeVazio(Imagem, "O Campo Imagem não pode estar vazio");
-            Validacoes.ValidarSeDiferente(CategoriaId,Guid.Empty, "O Campo CategoriaId tem que ser diferente de zero");
-            Validacoes.ValidarSeMenorIgualMinimo(Valor,0, "O Campo Valor não pode ser menor ou igual a zero");
+            Validacoes.ValidarSeVazio(Nome, "O campo Nome não pode estar vazio");
+            Validacoes.ValidarSeVazio(Descricao, "O campo Descrição não pode estar vazio");
+            Validacoes.ValidarSeVazio(Imagem, "O campo Imagem não pode estar vazio");
+            Validacoes.ValidarSeIgual(CategoriaId,Guid.Empty, "O campo CategoriaId não pode estar vazio");
+            Validacoes.ValidarSeMenorQue(Valor,1, "O campo Valor não pode ser menor ou igual a zero");
         }
     }
 }
