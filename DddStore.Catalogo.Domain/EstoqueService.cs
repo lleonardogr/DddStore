@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DddStore.Catalogo.Domain.Events;
+using DddStore.Core.Bus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +11,12 @@ namespace DddStore.Catalogo.Domain
     public class EstoqueService : IEstoqueService
     {
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IMediatrHandler _bus;
 
-        public EstoqueService(IProdutoRepository produtoRepository)
+        public EstoqueService(IProdutoRepository produtoRepository, IMediatrHandler bus)
         {
             _produtoRepository = produtoRepository;
+            _bus = bus;
         }
 
         public async Task<bool> DebitarEstoque(Guid produtoId, int quantidade)
@@ -22,6 +26,9 @@ namespace DddStore.Catalogo.Domain
                 return false;
             if(!produto.PossuiEstoque(quantidade)) 
                 return false;
+
+            if (produto.QuantidadeEstoque < 10)
+                await _bus.PublicarEvento(new ProdutoAbaixoEstoqueEvent(produto.Id, produto.QuantidadeEstoque));
            
             produto.DebitarEstoque(quantidade);
             _produtoRepository.Atualizar(produto);
