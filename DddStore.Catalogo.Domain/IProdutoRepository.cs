@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DddStore.Catalogo.Domain
 {
-    public interface IProductRepository : IRepository<Produto>
+    public interface IProdutoRepository : IRepository<Produto>
     {
         Task<IEnumerable<Produto>> ObterTodos();
         Task<Produto> ObterPorId(Guid Id);

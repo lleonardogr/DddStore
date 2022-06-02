@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DddStore.Catalogo.Data.Repository
 {
-    public class ProdutoRepository : IProductRepository
+    public class ProdutoRepository : IProdutoRepository
     {
         private readonly CatalogoContext _context;
 
