@@ -16,9 +16,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DddStore.Catalogo.Domain\DddStore.Catalogo.Domain.csproj" />
-    <ProjectReference Include="..\DddStore.Core\DddStore.Core.csproj" />
-  </ItemGroup>
-
 </Project>
