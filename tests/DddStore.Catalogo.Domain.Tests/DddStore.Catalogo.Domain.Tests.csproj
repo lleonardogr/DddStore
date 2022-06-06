@@ -22,9 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\scr\DddStore.Catalogo.Data\DddStore.Catalogo.Data.csproj" />
-    <ProjectReference Include="..\scr\DddStore.Catalogo.Domain\DddStore.Catalogo.Domain.csproj" />
-    <ProjectReference Include="..\scr\DddStore.Core\DddStore.Core.csproj" />
+    <ProjectReference Include="..\..\scr\DddStore.Catalogo.Domain\DddStore.Catalogo.Domain.csproj" />
+    <ProjectReference Include="..\..\scr\DddStore.Core\DddStore.Core.csproj" />
   </ItemGroup>
 
 </Project>

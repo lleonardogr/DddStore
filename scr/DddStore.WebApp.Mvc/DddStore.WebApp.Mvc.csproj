@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\_LoginPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
@@ -16,10 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\scr\DddStore.Catalogo.Application\DddStore.Catalogo.Application.csproj" />
-    <ProjectReference Include="..\scr\DddStore.Catalogo.Data\DddStore.Catalogo.Data.csproj" />
-    <ProjectReference Include="..\scr\DddStore.Catalogo.Domain\DddStore.Catalogo.Domain.csproj" />
-    <ProjectReference Include="..\scr\DddStore.Core\DddStore.Core.csproj" />
+    <ProjectReference Include="..\DddStore.Catalogo.Application\DddStore.Catalogo.Application.csproj" />
+    <ProjectReference Include="..\DddStore.Catalogo.Data\DddStore.Catalogo.Data.csproj" />
+    <ProjectReference Include="..\DddStore.Catalogo.Domain\DddStore.Catalogo.Domain.csproj" />
+    <ProjectReference Include="..\DddStore.Core\DddStore.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), 
     typeof(ViewModelToDomainMappingProfile));
-builder.Services.AddMediatR(typeof(ProdutoEventHandler));
+builder.Services.AddMediatR(typeof(Program));
 
 var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -42,6 +42,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Vitrine}/{action=Index}/{id?}");
 
 app.Run();

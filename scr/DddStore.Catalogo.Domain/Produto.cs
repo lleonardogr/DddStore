@@ -49,8 +49,9 @@ namespace DddStore.Catalogo.Domain
         }
         public void DebitarEstoque(int quantidade)
         {
-            if (QuantidadeEstoque < 0) quantidade *= -1;
-            if (PossuiEstoque(quantidade)) throw new DomainException("Estoque insuficiente");
+            if (QuantidadeEstoque > 0) 
+                quantidade *= -1;
+            if (!PossuiEstoque(quantidade)) throw new DomainException("Estoque insuficiente");
 
             QuantidadeEstoque -= quantidade;
         }

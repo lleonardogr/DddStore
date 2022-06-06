@@ -24,7 +24,7 @@ namespace DddStore.Catalogo.Domain
         public void Validar()
         {
             Validacoes.ValidarSeVazio(Nome, "O campo Nome não pode estar vazio");
-            Validacoes.ValidarSeDiferente(Codigo, 0, "O campo Codigo não pode ser 0");
+            Validacoes.ValidarSeIgual(Codigo, 0, "O campo Codigo não pode ser 0");
         }
     }
 }
