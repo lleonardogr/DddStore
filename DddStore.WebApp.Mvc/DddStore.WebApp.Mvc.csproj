@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\scr\DddStore.Catalogo.Application\DddStore.Catalogo.Application.csproj" />
+    <ProjectReference Include="..\scr\DddStore.Catalogo.Data\DddStore.Catalogo.Data.csproj" />
+    <ProjectReference Include="..\scr\DddStore.Catalogo.Domain\DddStore.Catalogo.Domain.csproj" />
+    <ProjectReference Include="..\scr\DddStore.Core\DddStore.Core.csproj" />
+  </ItemGroup>
+
+</Project>

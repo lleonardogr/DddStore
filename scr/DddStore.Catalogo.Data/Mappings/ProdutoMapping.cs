@@ -25,8 +25,8 @@ namespace DddStore.Catalogo.Domain.Tests.Mappings
             builder.OwnsOne(c => c.Dimensoes, cm =>
             {
                 cm.Property(c => c.Altura).HasColumnName("Altura").HasColumnType("int");
-                cm.Property(c => c.Altura).HasColumnName("Largura").HasColumnType("int");
-                cm.Property(c => c.Altura).HasColumnName("Profundidade").HasColumnType("int");
+                cm.Property(c => c.Largura).HasColumnName("Largura").HasColumnType("int");
+                cm.Property(c => c.Profundidade).HasColumnName("Profundidade").HasColumnType("int");
             });
 
             builder.ToTable("Produto");

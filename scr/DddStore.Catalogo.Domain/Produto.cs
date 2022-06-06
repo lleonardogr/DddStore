@@ -12,9 +12,14 @@ namespace DddStore.Catalogo.Domain
         public DateTime DataCadastro { get; private set; }
         public string Imagem { get; private set; }
         public int QuantidadeEstoque { get; private set; }
-        public Dimensoes Dimensoes { get; private set; }
+        public Dimensoes Dimensoes { get; set; }
         public Guid CategoriaId { get; set; }
         public Categoria Categoria { get; private set; }
+
+        private Produto()
+        {
+
+        }
 
         public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime dataCadastro, string imagem, Dimensoes dimensoes)
         {

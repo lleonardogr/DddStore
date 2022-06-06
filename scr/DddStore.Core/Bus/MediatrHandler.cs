@@ -3,7 +3,7 @@ using MediatR;
 
 namespace DddStore.Core.Bus
 {
-    public class MediatrHandler
+    public class MediatrHandler : IMediatrHandler
     {
         private readonly IMediator _mediator;
 
@@ -12,11 +12,11 @@ namespace DddStore.Core.Bus
             _mediator = mediator;
         }
 
-        public async Task PublicarEvento<T>(T evento) where T : Event
+        public async Task PublicarEvento<T>(T evento)
         {
             await _mediator.Publish(evento);
         }
     }
 
-    
+
 }

@@ -10,7 +10,7 @@ using DddStore.Core.DomainObjects;
 
 namespace DddStore.Catalogo.Application.Services
 {
-    internal class ProdutoAppService : IProdutoAppService
+    public class ProdutoAppService : IProdutoAppService
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly IEstoqueService _estoqueService;

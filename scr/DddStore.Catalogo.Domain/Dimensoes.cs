@@ -13,6 +13,11 @@ namespace DddStore.Catalogo.Domain
         public decimal Largura { get; private set; }
         public decimal Profundidade { get; private set; }
 
+        private Dimensoes()
+        {
+
+        }
+
         public Dimensoes(decimal altura, decimal largura, decimal profundidade)
         {
             Validacoes.ValidarSeMenorQue(altura, 1, "O campo altura precisa ser maior que 1");
