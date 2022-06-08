@@ -32,6 +32,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddStore.Catalogo.Domain.Tests", "tests\DddStore.Catalogo.Domain.Tests\DddStore.Catalogo.Domain.Tests.csproj", "{CC356B3C-A30C-4AC8-9CEC-DCE52DEB7387}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddStore.WebApp.Mvc", "scr\DddStore.WebApp.Mvc\DddStore.WebApp.Mvc.csproj", "{7D8D8E1F-6577-497C-8728-2B479CEFC1AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2B68FA38-AAC1-49DF-81F8-EEACEFE8CA9B} = {2B68FA38-AAC1-49DF-81F8-EEACEFE8CA9B}
+		{43C4C7C3-172F-4A1F-A451-01E24FC84EBF} = {43C4C7C3-172F-4A1F-A451-01E24FC84EBF}
+		{B766AB14-1A03-41DE-A102-575B152C9D93} = {B766AB14-1A03-41DE-A102-575B152C9D93}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddStore.Vendas.Domain", "DddStore.Vendas.Domain\DddStore.Vendas.Domain.csproj", "{43C4C7C3-172F-4A1F-A451-01E24FC84EBF}"
 EndProject
