@@ -10,7 +10,7 @@ namespace DddStore.Vendas.Domain
     public class Pedido : Entity, IAggregateRoot
     {
         public int Codigo { get; private set; }
-        public Guid ClientId { get; private set; }
+        public Guid ClienteId { get; private set; }
         public Guid? VoucherId { get; private set; }
         public bool VoucherUtilizado { get; private set; }
         public decimal Desconto { get; private set; }
@@ -23,18 +23,21 @@ namespace DddStore.Vendas.Domain
 
         public Voucher Voucher { get; private set; }
 
+        private Pedido()
+        {
+            _pedidoItems = new List<PedidoItem>();
+        }
+
         public Pedido(Guid clientId, bool voucherUtilizado, decimal desconto, decimal valorTotal)
         {
-            ClientId = clientId;
+            ClienteId = clientId;
             VoucherUtilizado = voucherUtilizado;
             Desconto = desconto;
             ValorTotal = valorTotal;
+            _pedidoItems = new List<PedidoItem>();
         }
 
-        protected Pedido()
-        {
-
-        }
+       
 
         public void AplicatVoucher(Voucher voucher)
         {
@@ -158,7 +161,7 @@ namespace DddStore.Vendas.Domain
         {
             public static Pedido NovoPedidoRascunho(Guid clientId)
             {
-                return new Pedido() { ClientId = clientId, PedidoStatus = PedidoStatus.Rascunho };
+                return new Pedido() { ClienteId = clientId, PedidoStatus = PedidoStatus.Rascunho };
             }
         }
     }

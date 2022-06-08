@@ -16,7 +16,7 @@ namespace DddStore.Vendas.Domain
         public bool Utilizado { get; private set; }
 
         public ICollection<Pedido> Pedidos { get; set; }
-
-
     }
+
+
 }

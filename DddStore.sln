@@ -38,11 +38,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddStore.WebApp.Mvc", "scr\
 		{B766AB14-1A03-41DE-A102-575B152C9D93} = {B766AB14-1A03-41DE-A102-575B152C9D93}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddStore.Vendas.Domain", "DddStore.Vendas.Domain\DddStore.Vendas.Domain.csproj", "{43C4C7C3-172F-4A1F-A451-01E24FC84EBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddStore.Vendas.Domain", "DddStore.Vendas.Domain\DddStore.Vendas.Domain.csproj", "{43C4C7C3-172F-4A1F-A451-01E24FC84EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddStore.Vendas.Application", "DddStore.Vendas.Application\DddStore.Vendas.Application.csproj", "{2B68FA38-AAC1-49DF-81F8-EEACEFE8CA9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddStore.Vendas.Application", "DddStore.Vendas.Application\DddStore.Vendas.Application.csproj", "{2B68FA38-AAC1-49DF-81F8-EEACEFE8CA9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddStore.Vendas.Data", "DddStore.Vendas.Data\DddStore.Vendas.Data.csproj", "{B766AB14-1A03-41DE-A102-575B152C9D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddStore.Vendas.Data", "DddStore.Vendas.Data\DddStore.Vendas.Data.csproj", "{B766AB14-1A03-41DE-A102-575B152C9D93}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4329FD86-49B8-435F-BA14-C1F9AE763C28} = {4329FD86-49B8-435F-BA14-C1F9AE763C28}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

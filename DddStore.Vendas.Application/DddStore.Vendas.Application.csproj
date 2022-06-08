@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DddStore.Vendas.Domain\DddStore.Vendas.Domain.csproj" />
     <ProjectReference Include="..\scr\DddStore.Core\DddStore.Core.csproj" />
   </ItemGroup>
 

@@ -5,6 +5,9 @@ using DddStore.Catalogo.Domain;
 using DddStore.Catalogo.Domain.Events;
 using DddStore.Core.Bus;
 using DddStore.Vendas.Application.Commands;
+using DddStore.Vendas.Data;
+using DddStore.Vendas.Data.Repository;
+using DddStore.Vendas.Domain;
 using MediatR;
 
 namespace DddStore.WebApp.Mvc.Setup
@@ -14,7 +17,7 @@ namespace DddStore.WebApp.Mvc.Setup
         public static void RegisterServices(this IServiceCollection services)
         {
             // Bus
-            services.AddScoped<IMediatrHandler, MediatrHandler>();
+            services.AddScoped<IMediatorHandler, MediatrHandler>();
 
             //Bounded Context - Catalogo
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
@@ -25,6 +28,9 @@ namespace DddStore.WebApp.Mvc.Setup
             services.AddScoped<INotificationHandler<ProdutoAbaixoEstoqueEvent>, ProdutoEventHandler>();
 
             //Bounded Context - Vendas
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
+            services.AddScoped<VendasContext>();
+
             services.AddScoped<IRequestHandler<AdicionarItemPedidoCommand, bool>, PedidoCommandHandler>();
         }
     }

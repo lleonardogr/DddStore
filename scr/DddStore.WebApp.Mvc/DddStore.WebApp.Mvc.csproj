@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DddStore.Vendas.Application\DddStore.Vendas.Application.csproj" />
+    <ProjectReference Include="..\..\DddStore.Vendas.Data\DddStore.Vendas.Data.csproj" />
+    <ProjectReference Include="..\..\DddStore.Vendas.Domain\DddStore.Vendas.Domain.csproj" />
     <ProjectReference Include="..\DddStore.Catalogo.Application\DddStore.Catalogo.Application.csproj" />
     <ProjectReference Include="..\DddStore.Catalogo.Data\DddStore.Catalogo.Data.csproj" />
     <ProjectReference Include="..\DddStore.Catalogo.Domain\DddStore.Catalogo.Domain.csproj" />

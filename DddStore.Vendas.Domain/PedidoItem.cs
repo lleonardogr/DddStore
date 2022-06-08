@@ -14,13 +14,10 @@ namespace DddStore.Vendas.Domain
         public string ProdutoNome { get; private set; }
         public int Quantidade { get; private set; }
         public decimal ValorUnitario { get; private set; }
-
+        
         public Pedido Pedido { get; set; }
 
-        protected PedidoItem()
-        {
-
-        }
+        private PedidoItem() { }
 
         public PedidoItem(Guid pedidoId, string produtoNome, int quantidade, decimal valorUnitario)
         {

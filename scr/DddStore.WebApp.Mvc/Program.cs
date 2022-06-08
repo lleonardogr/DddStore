@@ -1,6 +1,7 @@
 using DddStore.Catalogo.Application.Mappings;
 using DddStore.Catalogo.Data;
 using DddStore.Catalogo.Domain.Events;
+using DddStore.Vendas.Data;
 using DddStore.WebApp.Mvc.Setup;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,8 @@ var configuration = new ConfigurationBuilder()
                 .Build();
 
 builder.Services.AddDbContext<CatalogoContext>(options => 
+    options.UseSqlServer(configuration.GetConnectionString("AppDb")));
+builder.Services.AddDbContext<VendasContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("AppDb")));
 
 builder.Services.RegisterServices();
