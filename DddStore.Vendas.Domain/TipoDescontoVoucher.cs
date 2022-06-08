@@ -8,5 +8,6 @@ namespace DddStore.Vendas.Domain
 {
     public enum TipoDescontoVoucher
     {
+        Porcentagem
     }
 }
