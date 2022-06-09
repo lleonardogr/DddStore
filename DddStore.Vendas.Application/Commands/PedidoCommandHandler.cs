@@ -1,4 +1,6 @@
-﻿using DddStore.Core.Messages;
+﻿using DddStore.Core.Communication.Mediator;
+using DddStore.Core.Messages;
+using DddStore.Core.Messages.CommonMessages.Notifications;
 using DddStore.Vendas.Domain;
 using MediatR;
 using System;
@@ -12,10 +14,11 @@ namespace DddStore.Vendas.Application.Commands
     public class PedidoCommandHandler : IRequestHandler<AdicionarItemPedidoCommand, bool>
     {
         private readonly IPedidoRepository _pedidoRepository;
-
-        public PedidoCommandHandler(IPedidoRepository pedidoRepository)
+        private readonly IMediatorHandler _mediatorHandler;
+        public PedidoCommandHandler(IPedidoRepository pedidoRepository, IMediatorHandler mediatorHandler)
         {
             _pedidoRepository = pedidoRepository;
+            _mediatorHandler = mediatorHandler;
         }
 
         public async Task<bool> Handle(AdicionarItemPedidoCommand message, CancellationToken cancellationToken)
@@ -53,9 +56,7 @@ namespace DddStore.Vendas.Application.Commands
             if (message.EhValido()) return true;
 
             foreach (var error in message.ValidationResult.Errors)
-            { 
-                //lançar evento de erro
-            }
+                _mediatorHandler.PublicaNotificacao(new DomainNotification(message.MessageType, error.ErrorMessage));
 
             return false;
         }

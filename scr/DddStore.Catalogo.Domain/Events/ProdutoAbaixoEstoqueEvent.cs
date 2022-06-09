@@ -1,4 +1,4 @@
-﻿using DddStore.Core.DomainObjects;
+﻿using DddStore.Core.Messages.CommonMessages.DomainEvents;
 using System;
 using System.Collections.Generic;
 using System.Linq;

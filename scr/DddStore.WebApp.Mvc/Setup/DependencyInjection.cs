@@ -3,7 +3,8 @@ using DddStore.Catalogo.Data;
 using DddStore.Catalogo.Data.Repository;
 using DddStore.Catalogo.Domain;
 using DddStore.Catalogo.Domain.Events;
-using DddStore.Core.Bus;
+using DddStore.Core.Communication.Mediator;
+using DddStore.Core.Messages.CommonMessages.Notifications;
 using DddStore.Vendas.Application.Commands;
 using DddStore.Vendas.Data;
 using DddStore.Vendas.Data.Repository;
@@ -16,8 +17,11 @@ namespace DddStore.WebApp.Mvc.Setup
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            // Bus
+            // Mediator
             services.AddScoped<IMediatorHandler, MediatrHandler>();
+
+            //Notifications
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
             //Bounded Context - Catalogo
             services.AddScoped<IProdutoRepository, ProdutoRepository>();

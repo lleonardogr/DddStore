@@ -1,5 +1,5 @@
 ﻿using DddStore.Catalogo.Domain.Events;
-using DddStore.Core.Bus;
+using DddStore.Core.Communication.Mediator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
