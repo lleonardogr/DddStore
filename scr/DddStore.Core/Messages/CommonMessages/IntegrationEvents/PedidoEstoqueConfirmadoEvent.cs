@@ -1,0 +1,22 @@
+﻿using DddStore.Core.DomainObjects.DTO;
+
+namespace DddStore.Core.Messages.CommonMessages.IntegrationEvents
+{
+    public class PedidoEstoqueConfirmadoEvent : IntegrationEvent
+    {
+        public Guid PedidoId { get; private set; }
+        public Guid ClienteId { get; private set; }
+        public decimal Total { get; private set; }
+        public ListaProdutosPedido ProdutosPedido { get; private set; }
+        public string NomeCartao { get; private set; }
+        public string NumeroCartao { get; private set; }
+        public string ExpiracaoCartao { get; private set; }
+        public string CvvCartao { get; private set; }
+        public PedidoEstoqueConfirmadoEvent(Guid pedidoId, Guid clienteId, decimal total)
+        {
+            PedidoId = pedidoId;
+            ClienteId = clienteId;
+            Total = total;
+        }
+    }
+}

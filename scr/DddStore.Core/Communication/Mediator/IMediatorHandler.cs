@@ -12,6 +12,6 @@ namespace DddStore.Core.Communication.Mediator
     {
         Task PublicarEvento<T>(T evento) where T : Event;
         Task<bool> EnviarComando<T>(T evento) where T : Command;
-        Task PublicaNotificacao<T>(T notificacao) where T : DomainNotification;
+        Task PublicarNotificacao<T>(T notificacao) where T : DomainNotification;
     }
 }

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Messages\CommonMessages\IntegrationEvents\" />
+    <Folder Include="Messages\IntegrationEvents\" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,8 @@
 ﻿using DddStore.Core.Communication.Mediator;
+using DddStore.Core.DomainObjects.DTO;
+using DddStore.Core.Extensions;
 using DddStore.Core.Messages;
+using DddStore.Core.Messages.CommonMessages.IntegrationEvents;
 using DddStore.Core.Messages.CommonMessages.Notifications;
 using DddStore.Vendas.Application.Events;
 using DddStore.Vendas.Domain;
@@ -16,7 +19,8 @@ namespace DddStore.Vendas.Application.Commands
         IRequestHandler<AdicionarItemPedidoCommand, bool>,
         IRequestHandler<AtualizarItemPedidoCommand, bool>,
         IRequestHandler<RemoverItemPedidoCommand, bool>,
-        IRequestHandler<AplicarVoucherPedidoCommand, bool>
+        IRequestHandler<AplicarVoucherPedidoCommand, bool>,
+        IRequestHandler<IniciarPedidoCommand, bool>
     {
         private readonly IPedidoRepository _pedidoRepository;
         private readonly IMediatorHandler _mediatorHandler;
@@ -71,7 +75,7 @@ namespace DddStore.Vendas.Application.Commands
 
             if (pedido == null)
             {
-                await _mediatorHandler.PublicaNotificacao(new DomainNotification("pedido", "Pedido não encontrado"));
+                await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Pedido não encontrado"));
                 return false;
             }
 
@@ -79,7 +83,7 @@ namespace DddStore.Vendas.Application.Commands
 
             if(!pedido.PedidoItemExistente(pedidoItem))
             {
-                await _mediatorHandler.PublicaNotificacao(new DomainNotification("pedido", "Item do pedido não encontrado"));
+                await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Item do pedido não encontrado"));
             }
 
             pedido.AtualizarUnidades(pedidoItem, message.Quantidade);
@@ -103,7 +107,7 @@ namespace DddStore.Vendas.Application.Commands
 
             if (pedido == null)
             {
-                await _mediatorHandler.PublicaNotificacao(new DomainNotification("pedido", "Pedido não encontrado"));
+                await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Pedido não encontrado"));
                 return false;
             }
 
@@ -111,7 +115,7 @@ namespace DddStore.Vendas.Application.Commands
 
             if (!pedido.PedidoItemExistente(pedidoItem))
             {
-                await _mediatorHandler.PublicaNotificacao(new DomainNotification("pedido", "Item do pedido não encontrado"));
+                await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Item do pedido não encontrado"));
             }
 
             pedido.RemoverItem(pedidoItem);
@@ -133,7 +137,7 @@ namespace DddStore.Vendas.Application.Commands
 
             if (pedido == null)
             {
-                await _mediatorHandler.PublicaNotificacao(new DomainNotification("pedido", "Pedido não encontrado"));
+                await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Pedido não encontrado"));
                 return false;
             }
 
@@ -141,7 +145,7 @@ namespace DddStore.Vendas.Application.Commands
 
             if (voucher == null)
             {
-                await _mediatorHandler.PublicaNotificacao(new DomainNotification("pedido", "Voucher não encontrado"));
+                await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Voucher não encontrado"));
                 return false;
             }
 
@@ -150,7 +154,7 @@ namespace DddStore.Vendas.Application.Commands
             if (!VoucherAplicacaoValidation.IsValid)
             {
                 foreach (var error in VoucherAplicacaoValidation.Errors)
-                    await _mediatorHandler.PublicaNotificacao(new DomainNotification(error.ErrorCode, error.ErrorMessage));
+                    await _mediatorHandler.PublicarNotificacao(new DomainNotification(error.ErrorCode, error.ErrorMessage));
                 return false;
             }
 
@@ -162,12 +166,34 @@ namespace DddStore.Vendas.Application.Commands
             return await _pedidoRepository.UnitOfWork.Commit();
         }
 
+        public async Task<bool> Handle(IniciarPedidoCommand message, CancellationToken cancellationToken)
+        {
+            if (!ValidarComando(message))
+                return false;
+
+            var pedido = await _pedidoRepository.ObterPedidoRascunhoPorClienteId(message.ClienteId);
+            pedido.IniciarPedido();
+
+            var itensList = new List<Item>();
+            pedido.PedidoItems.ForEach(i => itensList.Add(new Item { Id = i.ProdutoId, Quantidade = i.Quantidade }));
+            var listaProdutosPedido = new ListaProdutosPedido { PedidoId = pedido.Id, Itens = itensList };
+
+            pedido.AdicionarEvento(new PedidoIniciadoEvent(pedido.Id, pedido.ClienteId, pedido.ValorTotal,
+      listaProdutosPedido, message.NomeCartao, message.NumeroCartao,
+      message.ExpiracaoCartao, message.CvvCartao));
+
+
+
+            _pedidoRepository.Atualizar(pedido);
+            return await _pedidoRepository.UnitOfWork.Commit();
+        }
+
         private bool ValidarComando(Command message)
         {
             if (message.EhValido()) return true;
 
             foreach (var error in message.ValidationResult.Errors)
-                _mediatorHandler.PublicaNotificacao(new DomainNotification(message.MessageType, error.ErrorMessage));
+                _mediatorHandler.PublicarNotificacao(new DomainNotification(message.MessageType, error.ErrorMessage));
 
             return false;
         }

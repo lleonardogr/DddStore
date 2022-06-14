@@ -23,7 +23,7 @@ namespace DddStore.Core.Communication.Mediator
             return await _mediator.Send(comando);
         }
 
-        public async Task PublicaNotificacao<T>(T notificacao) where T : DomainNotification
+        public async Task PublicarNotificacao<T>(T notificacao) where T : DomainNotification
         {
             await _mediator.Publish(notificacao);
         }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using DddStore.Core.Messages.CommonMessages.IntegrationEvents;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace DddStore.Vendas.Application.Events
     public class PedidoEventHandler :
         INotificationHandler<PedidoRascunhoIniciadoEvent>,
         INotificationHandler<PedidoAtualizadoEvent>,
-        INotificationHandler<PedidoItemAdicionadoEvent>
+        INotificationHandler<PedidoItemAdicionadoEvent>,
+        INotificationHandler<PedidoEstoqueRejeitadoEvent>
     {
         public Task Handle(PedidoRascunhoIniciadoEvent notification, CancellationToken cancellationToken)
         {
@@ -23,6 +25,12 @@ namespace DddStore.Vendas.Application.Events
 
         public Task Handle(PedidoItemAdicionadoEvent notification, CancellationToken cancellationToken)
         {
+            return Task.CompletedTask;
+        }
+
+        public Task Handle(PedidoEstoqueRejeitadoEvent notification, CancellationToken cancellationToken)
+        {
+            //cancelar o processamento do pedido - retornar erro ao cliente.
             return Task.CompletedTask;
         }
     }

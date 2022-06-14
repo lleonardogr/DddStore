@@ -30,7 +30,7 @@ namespace DddStore.WebApp.Mvc.Controllers
 
         protected void NotificaErro(string codigo, string mensagem)
         {
-            _mediatorHandler.PublicaNotificacao(new DomainNotification(codigo, mensagem));
+            _mediatorHandler.PublicarNotificacao(new DomainNotification(codigo, mensagem));
         }
 
     }
