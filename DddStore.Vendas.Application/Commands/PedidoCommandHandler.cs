@@ -1,6 +1,7 @@
 ﻿using DddStore.Core.Communication.Mediator;
 using DddStore.Core.Messages;
 using DddStore.Core.Messages.CommonMessages.Notifications;
+using DddStore.Vendas.Application.Events;
 using DddStore.Vendas.Domain;
 using MediatR;
 using System;
@@ -36,6 +37,7 @@ namespace DddStore.Vendas.Application.Commands
                 pedido.AdicionarItem(pedidoItem);
 
                 _pedidoRepository.Adicionar(pedido);
+                pedido.AdicionarEvento(new PedidoRascunhoIniciadoEvent(message.ClienteId, message.ProdutoId));
             }
             else
             {
@@ -46,7 +48,12 @@ namespace DddStore.Vendas.Application.Commands
                     _pedidoRepository.AtualizarItem(pedido.PedidoItems.FirstOrDefault(p => p.ProdutoId == pedidoItem.ProdutoId));
                 else
                     _pedidoRepository.AtualizarItem(pedidoItem);
+
+                pedido.AdicionarEvento(new PedidoAtualizadoEvent(pedido.ClienteId, pedido.Id, pedido.ValorTotal));
             }
+
+            pedido.AdicionarEvento(new PedidoItemAdicionadoEvent(pedido.ClienteId, pedido.Id, 
+                message.ProdutoId,message.Nome, message.ValorUnitario, message.Quantidade));
 
             return await _pedidoRepository.UnitOfWork.Commit();
         }

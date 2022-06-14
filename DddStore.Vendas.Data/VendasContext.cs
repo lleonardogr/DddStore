@@ -1,13 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DddStore.Core.Data;
 using DddStore.Vendas.Domain;
+using DddStore.Core.Communication.Mediator;
+using DddStore.Core.Messages;
 
 namespace DddStore.Vendas.Data
 {
     public class VendasContext : DbContext, IUnitOfWork
     {
-        public VendasContext(DbContextOptions<VendasContext> options)
-            : base(options) { }
+        private readonly IMediatorHandler _mediatorHandler;
+        public VendasContext(DbContextOptions<VendasContext> options, IMediatorHandler mediatorHandler)
+            : base(options)
+        {
+            _mediatorHandler = mediatorHandler;
+        }
 
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<PedidoItem> PedidoItems { get; set; }
@@ -19,6 +25,8 @@ namespace DddStore.Vendas.Data
                 e => e.GetProperties().Where(p => p.ClrType == typeof(string))
             ))
                 property.SetColumnType("varchar(100)");
+
+            modelBuilder.Ignore<Event>();
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(VendasContext).Assembly);
 
@@ -38,7 +46,11 @@ namespace DddStore.Vendas.Data
                     entry.Property("DataCadastro").IsModified = false;
             }
 
-            return await base.SaveChangesAsync() > 0;
+            var sucesso = await base.SaveChangesAsync() > 0;
+            if (sucesso)
+                await _mediatorHandler.PublicarEventos(this);
+
+            return sucesso;
         }
     }
 }

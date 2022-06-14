@@ -1,5 +1,6 @@
 ﻿using DddStore.Catalogo.Domain;
 using DddStore.Core.Data;
+using DddStore.Core.Messages;
 using Microsoft.EntityFrameworkCore;
 
 namespace DddStore.Catalogo.Data
@@ -18,6 +19,8 @@ namespace DddStore.Catalogo.Data
                 e => e.GetProperties().Where(p => p.ClrType == typeof(string))
             ))
                 property.SetColumnType("varchar(100)");
+
+            modelBuilder.Ignore<Event>();
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogoContext).Assembly);
         }

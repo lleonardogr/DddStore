@@ -2,6 +2,7 @@
 using DddStore.Core.Communication.Mediator;
 using DddStore.Core.Messages.CommonMessages.Notifications;
 using DddStore.Vendas.Application.Commands;
+using DddStore.Vendas.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,18 +11,22 @@ namespace DddStore.WebApp.Mvc.Controllers
     public class CarrinhoController : ControllerBase
     {
         private readonly IProdutoAppService _produtoAppService;
+        private readonly IPedidoQueries _pedidoQueries;
         private readonly IMediatorHandler _mediatorHandler;
 
         public CarrinhoController(INotificationHandler<DomainNotification> notifications,
-            IProdutoAppService produtoAppService, IMediatorHandler mediatorHandler) : base(notifications, mediatorHandler)
+            IProdutoAppService produtoAppService, IPedidoQueries pedidoQueries, 
+            IMediatorHandler mediatorHandler) : base(notifications, mediatorHandler)
         {
             _produtoAppService = produtoAppService;
+            _pedidoQueries = pedidoQueries;
             _mediatorHandler = mediatorHandler;
         }
 
-        public IActionResult Index()
+        [Route("meu-carrinho")]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
         }
 
         [HttpPost]
@@ -46,5 +51,38 @@ namespace DddStore.WebApp.Mvc.Controllers
             TempData["Erros"] = ObterMensagensErro();
             return RedirectToAction("ProdutoDetalhe", "Vitrine", new { id });
         }
+
+        //[HttpPost]
+        //[Route("remover-item")]
+        //public async Task<IActionResult> RemoverItem(Guid id)
+        //{
+        //    var produto = await _produtoAppService.ObterPorId(id);
+        //    if (produto == null)
+        //        return BadRequest();
+
+        //    var command = new RemoverItemPedidoCommand(ClienteId, id);
+        //    await _mediatorHandler.EnviarComando(command);
+
+        //    if (OperacaoValida())
+        //        return RedirectToAction("Index");
+
+        //    return View("Index", await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
+        //}
+
+        //[HttpPost]
+        //[Route("atualizar-item")]
+        //public async Task<IActionResult> AtualizarItem(Guid id, int quantidade)
+        //{
+        //    var produto = await _produtoAppService.ObterPorId(id);
+        //    if (produto == null) return BadRequest();
+
+        //    var command = new AtualizarItemPedidoCommand(ClienteId, id, quantidade);
+        //    await _mediatorHandler.EnviarComando(command);
+
+        //    if (OperacaoValida())
+        //        return RedirectToAction("Index");
+
+        //    return View("Index", await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
+        //}
     }
 }

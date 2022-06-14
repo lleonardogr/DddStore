@@ -6,6 +6,8 @@ using DddStore.Catalogo.Domain.Events;
 using DddStore.Core.Communication.Mediator;
 using DddStore.Core.Messages.CommonMessages.Notifications;
 using DddStore.Vendas.Application.Commands;
+using DddStore.Vendas.Application.Events;
+using DddStore.Vendas.Application.Queries;
 using DddStore.Vendas.Data;
 using DddStore.Vendas.Data.Repository;
 using DddStore.Vendas.Domain;
@@ -33,9 +35,16 @@ namespace DddStore.WebApp.Mvc.Setup
 
             //Bounded Context - Vendas
             services.AddScoped<IPedidoRepository, PedidoRepository>();
+            services.AddScoped<IPedidoQueries, PedidoQueries>();
             services.AddScoped<VendasContext>();
 
             services.AddScoped<IRequestHandler<AdicionarItemPedidoCommand, bool>, PedidoCommandHandler>();
+
+            services.AddScoped<INotificationHandler<PedidoRascunhoIniciadoEvent>, PedidoEventHandler>();
+            services.AddScoped<INotificationHandler<PedidoAtualizadoEvent>, PedidoEventHandler>();
+            services.AddScoped<INotificationHandler<PedidoItemAdicionadoEvent>, PedidoEventHandler>();
+
+
         }
     }
 }
