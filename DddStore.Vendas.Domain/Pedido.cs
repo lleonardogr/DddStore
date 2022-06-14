@@ -1,4 +1,5 @@
 ﻿using DddStore.Core.DomainObjects;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,11 +40,16 @@ namespace DddStore.Vendas.Domain
 
        
 
-        public void AplicatVoucher(Voucher voucher)
+        public ValidationResult AplicatVoucher(Voucher voucher)
         {
+            var ValidationResult = voucher.ValidarSeAplicavel();
+            if (!ValidationResult.IsValid) return ValidationResult;
+
             Voucher = voucher;
             VoucherUtilizado = true;
             CalcularValorPedido();
+
+            return ValidationResult;
         }
 
         public void CalcularValorPedido()

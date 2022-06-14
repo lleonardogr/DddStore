@@ -19,9 +19,9 @@ namespace DddStore.Vendas.Domain
 
         private PedidoItem() { }
 
-        public PedidoItem(Guid pedidoId, string produtoNome, int quantidade, decimal valorUnitario)
+        public PedidoItem(Guid produtoId, string produtoNome, int quantidade, decimal valorUnitario)
         {
-            PedidoId = pedidoId;
+            ProdutoId = produtoId;
             ProdutoNome = produtoNome;
             Quantidade = quantidade;
             ValorUnitario = valorUnitario;
