@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DddStore.Pagamentos.AntiCorruption\DddStore.Pagamentos.AntiCorruption.csproj" />
+    <ProjectReference Include="..\..\DddStore.Pagamentos.Business\DddStore.Pagamentos.Business.csproj" />
+    <ProjectReference Include="..\..\DddStore.Pagamentos.Data\DddStore.Pagamentos.Data.csproj" />
     <ProjectReference Include="..\..\DddStore.Vendas.Application\DddStore.Vendas.Application.csproj" />
     <ProjectReference Include="..\..\DddStore.Vendas.Data\DddStore.Vendas.Data.csproj" />
     <ProjectReference Include="..\..\DddStore.Vendas.Domain\DddStore.Vendas.Domain.csproj" />
