@@ -110,7 +110,7 @@ namespace DddStore.WebApp.Mvc.Controllers
         public async Task<IActionResult> IniciarPedido(CarrinhoViewModel carrinhoViewModel)
         {
             var carrinho = await _pedidoQueries.ObterCarrinhoCliente(ClienteId);
-            var command = new IniciarPedidoCommand(carrinho.PedidoId, ClienteId,
+            var command = new IniciarPedidoCommand(ClienteId, carrinho.PedidoId,
                 carrinho.ValorTotal, carrinhoViewModel.Pagamento.NomeCartao, carrinhoViewModel.Pagamento.NumeroCartao,
                 carrinhoViewModel.Pagamento.ExpiracaoCartao, carrinhoViewModel.Pagamento.CvvCartao);
 

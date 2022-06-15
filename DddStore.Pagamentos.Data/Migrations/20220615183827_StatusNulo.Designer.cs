@@ -4,6 +4,7 @@ using DddStore.Pagamentos.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DddStore.Pagamentos.Data.Migrations
 {
     [DbContext(typeof(PagamentoContext))]
-    partial class PagamentoContextModelSnapshot : ModelSnapshot
+    [Migration("20220615183827_StatusNulo")]
+    partial class StatusNulo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

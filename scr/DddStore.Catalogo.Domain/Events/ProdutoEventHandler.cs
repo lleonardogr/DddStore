@@ -29,7 +29,9 @@ namespace DddStore.Catalogo.Domain.Events
         {
             var result = await _estoqueService.DebitarListaProdutosPedido(mensagem.ProdutosPedido);
             if (result)
-                await _mediatorHandler.PublicarEvento(new PedidoEstoqueConfirmadoEvent(mensagem.PedidoId, mensagem.ClienteId, mensagem.Total));
+                await _mediatorHandler.PublicarEvento(new PedidoEstoqueConfirmadoEvent(mensagem.PedidoId, mensagem.ClienteId, 
+                    mensagem.Total, mensagem.ProdutosPedido, mensagem.NomeCartao, 
+                    mensagem.NumeroCartao, mensagem.ExpiracaoCartao, mensagem.CvvCartao));
             else
                 await _mediatorHandler.PublicarEvento(new PedidoEstoqueRejeitadoEvent(mensagem.PedidoId, mensagem.ClienteId));
         }

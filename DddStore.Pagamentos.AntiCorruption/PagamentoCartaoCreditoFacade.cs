@@ -34,6 +34,7 @@ namespace DddStore.Pagamentos.AntiCorruption
             if (pagamentoResult)
             {
                 transacao.StatusTransacao = StatusTransacao.Pago;
+                
                 return transacao;
             }
 

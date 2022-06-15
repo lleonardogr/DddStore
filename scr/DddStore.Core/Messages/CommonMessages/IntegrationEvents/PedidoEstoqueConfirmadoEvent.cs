@@ -12,11 +12,17 @@ namespace DddStore.Core.Messages.CommonMessages.IntegrationEvents
         public string NumeroCartao { get; private set; }
         public string ExpiracaoCartao { get; private set; }
         public string CvvCartao { get; private set; }
-        public PedidoEstoqueConfirmadoEvent(Guid pedidoId, Guid clienteId, decimal total)
+        public PedidoEstoqueConfirmadoEvent(Guid pedidoId, Guid clienteId, decimal total,
+            ListaProdutosPedido produtosPedido, string nomeCartao, string numeroCartao, string expiracaoCartao, string cvvCartao)
         {
             PedidoId = pedidoId;
             ClienteId = clienteId;
             Total = total;
+            ProdutosPedido = produtosPedido;
+            NumeroCartao = numeroCartao;
+            NomeCartao = nomeCartao;
+            ExpiracaoCartao = expiracaoCartao;
+            CvvCartao = cvvCartao;
         }
     }
 }
