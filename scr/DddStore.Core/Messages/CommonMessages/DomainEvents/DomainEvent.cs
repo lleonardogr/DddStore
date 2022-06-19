@@ -1,12 +1,16 @@
 ﻿using DddStore.Core.Messages;
+using MediatR;
 
 namespace DddStore.Core.Messages.CommonMessages.DomainEvents
 {
-    public class DomainEvent : Event
+    public class DomainEvent : Message, INotification
     {
-        public DomainEvent(Guid aggregateId)
+        public DateTime TimeStamp { get; private set; }
+
+        protected DomainEvent(Guid aggregateId)
         {
             AggregateId = aggregateId;
+            TimeStamp = DateTime.UtcNow;
         }
     }
 }

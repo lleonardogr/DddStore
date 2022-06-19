@@ -4,6 +4,7 @@ using DddStore.Catalogo.Data.Repository;
 using DddStore.Catalogo.Domain;
 using DddStore.Catalogo.Domain.Events;
 using DddStore.Core.Communication.Mediator;
+using DddStore.Core.Data.EventSourcing;
 using DddStore.Core.Messages.CommonMessages.IntegrationEvents;
 using DddStore.Core.Messages.CommonMessages.Notifications;
 using DddStore.Pagamentos.AntiCorruption;
@@ -34,6 +35,7 @@ namespace DddStore.WebApp.Mvc.Setup
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
             //Event Sourcing
+            services.AddSingleton<IEventSourcingRepository, EventSourcingRepository>();
             services.AddSingleton<IEventStoreService, EventStoreService>();
 
             //Bounded Context - Catalogo

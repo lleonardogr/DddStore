@@ -9,8 +9,13 @@ namespace EventSourcing
 
         public EventStoreService(IConfiguration configuration)
         {
-            _connection = EventStoreConnection.Create(configuration.GetConnectionString("EventStoreConnection"));
-            _connection.ConnectAsync();
+            _connection = EventStoreConnection.Create(
+                configuration.GetConnectionString("EventStoreConnection"),
+                ConnectionSettings.Create().DisableServerCertificateValidation().DisableTls().KeepReconnecting(),
+                "DddStore"
+                );
+
+            _connection.ConnectAsync().GetAwaiter().GetResult();
         }
 
         public IEventStoreConnection GetConnection()
