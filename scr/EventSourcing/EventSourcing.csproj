@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="EventStore.Client" Version="21.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DddStore.Vendas.Domain\DddStore.Vendas.Domain.csproj" />
-    <ProjectReference Include="..\scr\DddStore.Core\DddStore.Core.csproj" />
+    <ProjectReference Include="..\DddStore.Core\DddStore.Core.csproj" />
   </ItemGroup>
 
 </Project>

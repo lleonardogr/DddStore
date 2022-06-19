@@ -17,6 +17,7 @@ using DddStore.Vendas.Application.Queries;
 using DddStore.Vendas.Data;
 using DddStore.Vendas.Data.Repository;
 using DddStore.Vendas.Domain;
+using EventSourcing;
 using MediatR;
 using ConfigurationManager = DddStore.Pagamentos.AntiCorruption.ConfigurationManager;
 
@@ -31,6 +32,9 @@ namespace DddStore.WebApp.Mvc.Setup
 
             //Notifications
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+
+            //Event Sourcing
+            services.AddSingleton<IEventStoreService, EventStoreService>();
 
             //Bounded Context - Catalogo
             services.AddScoped<IProdutoRepository, ProdutoRepository>();

@@ -20,16 +20,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DddStore.Pagamentos.AntiCorruption\DddStore.Pagamentos.AntiCorruption.csproj" />
-    <ProjectReference Include="..\..\DddStore.Pagamentos.Business\DddStore.Pagamentos.Business.csproj" />
-    <ProjectReference Include="..\..\DddStore.Pagamentos.Data\DddStore.Pagamentos.Data.csproj" />
-    <ProjectReference Include="..\..\DddStore.Vendas.Application\DddStore.Vendas.Application.csproj" />
-    <ProjectReference Include="..\..\DddStore.Vendas.Data\DddStore.Vendas.Data.csproj" />
-    <ProjectReference Include="..\..\DddStore.Vendas.Domain\DddStore.Vendas.Domain.csproj" />
     <ProjectReference Include="..\DddStore.Catalogo.Application\DddStore.Catalogo.Application.csproj" />
     <ProjectReference Include="..\DddStore.Catalogo.Data\DddStore.Catalogo.Data.csproj" />
     <ProjectReference Include="..\DddStore.Catalogo.Domain\DddStore.Catalogo.Domain.csproj" />
     <ProjectReference Include="..\DddStore.Core\DddStore.Core.csproj" />
+    <ProjectReference Include="..\DddStore.Pagamentos.AntiCorruption\DddStore.Pagamentos.AntiCorruption.csproj" />
+    <ProjectReference Include="..\DddStore.Pagamentos.Business\DddStore.Pagamentos.Business.csproj" />
+    <ProjectReference Include="..\DddStore.Pagamentos.Data\DddStore.Pagamentos.Data.csproj" />
+    <ProjectReference Include="..\DddStore.Vendas.Application\DddStore.Vendas.Application.csproj" />
+    <ProjectReference Include="..\DddStore.Vendas.Data\DddStore.Vendas.Data.csproj" />
+    <ProjectReference Include="..\DddStore.Vendas.Domain\DddStore.Vendas.Domain.csproj" />
+    <ProjectReference Include="..\EventSourcing\EventSourcing.csproj" />
   </ItemGroup>
 
 </Project>

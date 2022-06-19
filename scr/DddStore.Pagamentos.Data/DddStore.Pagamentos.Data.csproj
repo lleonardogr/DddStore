@@ -17,12 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DddStore.Pagamentos.Business\DddStore.Pagamentos.Business.csproj" />
-    <ProjectReference Include="..\scr\DddStore.Core\DddStore.Core.csproj" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\DddStore.Core\DddStore.Core.csproj" />
+    <ProjectReference Include="..\DddStore.Pagamentos.Business\DddStore.Pagamentos.Business.csproj" />
   </ItemGroup>
 
 </Project>

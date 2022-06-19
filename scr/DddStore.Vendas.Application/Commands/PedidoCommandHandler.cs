@@ -87,7 +87,6 @@ namespace DddStore.Vendas.Application.Commands
 
             pedido.AtualizarUnidades(pedidoItem, message.Quantidade);
 
-            pedido.AdicionarEvento(new PedidoAtualizadoEvent(pedido.ClienteId, pedido.Id, pedido.ValorTotal));
             pedido.AdicionarEvento(new PedidoProdutoAtualizadoEvent(pedido.ClienteId, 
                 pedido.Id, message.ProdutoId, message.Quantidade));
 
